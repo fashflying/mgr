@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mgr.wfengine.domain">
+	<class name="ActivityTimeout" table="ActivityTimeout">
+		<id name="id" column="ActivityTimeoutId">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="operationNum" type="integer" insert="false">
+			<column name="operationNum" default="0"></column>
+		</property>
+		<property name="timeoutTime" type="timestamp"></property>
+		<property name="state">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">mgr.wfengine.domain.Enums$ActivityInstanceState</param>
+			</type>
+    	</property>
+    	<property name="activityInstanceId" type="string" index="activityInstance"></property>
+	</class>
+</hibernate-mapping>

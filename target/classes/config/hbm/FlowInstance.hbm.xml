@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mgr.wfengine.domain">
+	<class name="FlowInstance" table="FlowInstance">
+		<id name="id" column="flowInstanceId">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="title" type="string"></property>
+		<property name="startUser" type="string"></property>
+		<property name="parentActInstId" type="string"></property>
+		<property name="createTime" type="timestamp"></property>
+		<property name="finishTime" type="timestamp"></property>
+		<property name="flowVersion" type="integer"></property>
+		<property name="flowId" type="string" insert="false" update="false"></property>
+		<many-to-one name="flow" column="flowId" class="Flow"></many-to-one>
+		<set name="activityInstances" inverse="true">
+			<key column="flowInstanceId"></key>
+			<one-to-many class="ActivityInstance"/>
+		</set>
+		<set name="mergeInstances" inverse="true" cascade="none">
+			<key column="flowInstanceId"></key>
+			<one-to-many class="MergeInstance"/>
+		</set>
+		<set name="datas" cascade="all">
+			<key column="flowInstanceId"></key>
+			<one-to-many class="FlowData"/>
+		</set>
+		<property name="state">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">mgr.wfengine.domain.Enums$FlowInstanceState</param>
+			</type>
+    	</property>
+	</class>
+</hibernate-mapping>

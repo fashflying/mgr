@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mgr.wfengine.domain">
+	<class name="UserOndo" table="userondo_1">
+		<id name="id" column="actinstanceid" length="36"></id>
+		<property name="receiveTime" column="receivetime" type="timestamp" not-null="true"></property>
+		<property name="docNumber" column="docnumber" type="string" length="50"></property>
+		<property name="flowTopic" column="flowtopic" type="string" length="200" not-null="true"></property>
+		<property name="flowTable" column="flowtable" type="string" length="50"></property>
+		<property name="flowType" column="flowtype" type="string" length="36" not-null="true"></property>
+		<property name="actName" column="actname" type="string" length="100" not-null="true"></property>
+		<property name="flowInstanceId" column="flowinstanceid" type="string" length="100" not-null="true"></property>
+		<property name="flowId" column="flowid" type="string" length="36" not-null="true"></property>
+		<property name="actId" column="actid" type="string" length="36" not-null="true"></property>
+		<property name="receiveUser" column="receiveuser" type="string" length="20"></property>
+		<property name="receiveUserId" column="receiveuserid" type="string" length="36" not-null="true" index="idx_receiveuserid"></property>
+		<property name="sendUser" column="senduser" type="string" length="20" not-null="true"></property>
+		<property name="sendUserId" column="senduserid" type="string" length="36" not-null="true"></property>
+		<property name="sendComp" column="sendcomp" type="string" length="100"></property>
+		<property name="docType" column="doctype" type="string" length="50"></property>
+		<property name="sendDepart" column="senddepart" type="string" length="100"></property>
+		<property name="content1" column="content1" type="string" length="50"></property>
+		<property name="content2" column="content2" type="string" length="100"></property>
+		<property name="nextActList" column="nextactlist" type="string" length="100"></property>
+		<property name="actForm" column="actform" type="string" length="50"></property>
+		<property name="overTime" column="overtime" type="timestamp"></property>
+		<property name="actState" type="integer" insert="true">
+			<column name="actstate" not-null="true" default="1"/>
+		</property>
+		<property name="flowVer" column="flowver" type="string" length="20"></property>
+		<property name="isread" column="isread" type="integer"></property>
+		<property name="docId" column="docid" type="string" length="20"></property>
+	</class>
+</hibernate-mapping>

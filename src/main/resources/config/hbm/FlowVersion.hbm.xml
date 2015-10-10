@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mgr.wfengine.domain">
+	<class name="FlowVersion" table="FlowVersion">
+		<id name="id" column="flowVersionId">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="createTime" type="timestamp"></property>
+		<property name="editTime" type="timestamp"></property>
+		<property name="version" type="integer"></property>
+		<property name="define" type="text"></property>
+		<many-to-one name="flow" column="flowId" class="Flow"></many-to-one>
+	</class>
+</hibernate-mapping>

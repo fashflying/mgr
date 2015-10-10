@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mgr.wfengine.domain">
+	<class name="MergeInstance" table="MergeInstance">
+		<id name="id" column="mergeInstanceId">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="owner" type="string"></property>
+		<property name="startActanceInstanceId" type="string"></property>
+		<property name="finishActanceInstanceId" type="string"></property>
+		<property name="createTime" type="timestamp"></property>
+		<property name="finishTime" type="timestamp"></property>
+		<property name="splitCount" type="integer"></property>
+		<property name="finishCount" type="integer"></property>
+		<property name="expectCount" type="integer"></property>
+		<property name="state">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">mgr.wfengine.domain.Enums$MergeInstanceState</param>
+			</type>
+    	</property>
+		<property name="flowInstanceId" type="string" insert="false" update="false"></property>
+		<many-to-one name="flowInstance" column="flowInstanceId" class="FlowInstance"></many-to-one>
+		<set name="activityInstances" table="mergeActivity" cascade="all">
+			<key column="mergeInstanceId"></key>
+			<many-to-many column="activityInstanceId" class="ActivityInstance"/>
+		</set>
+	</class>
+</hibernate-mapping>
